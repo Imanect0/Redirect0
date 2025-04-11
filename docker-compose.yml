@@ -1,0 +1,81 @@
+version: "3.8"
+
+services:
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: redirect0-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: redirect_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d redirect_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - redirect0-network
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: redirect0-api
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/redirect_db
+      - PORT=8080
+      - CORS_ORIGIN=http://localhost
+      - RUST_LOG=debug # ログレベルをデバッグに変更
+    networks:
+      - redirect0-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: redirect0-frontend
+    restart: always
+    ports:
+      - "3001:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost/api
+    depends_on:
+      - api
+    networks:
+      - redirect0-network
+
+  # Nginxを追加して、フロントエンドとAPIへのリクエストを管理
+  nginx:
+    image: nginx:alpine
+    container_name: redirect0-nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - api
+      - frontend
+    networks:
+      - redirect0-network
+
+networks:
+  redirect0-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

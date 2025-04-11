@@ -1,0 +1,32 @@
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+
+# Next.js
+node_modules/
+.next/
+out/
+*.log
+.env
+.env.local
+.env.*.local
+
+# General
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+*.rej
+*.patch
+*.diff
+*.crt
+*.key
+*.pem
+*.pfx
+*.p12
