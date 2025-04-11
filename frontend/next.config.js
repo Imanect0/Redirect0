@@ -5,7 +5,7 @@ const nextConfig = {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost/api',
   },
   output: 'standalone',
-  // リダイレクトの設定を追加
+  // Add redirect configuration
   async rewrites() {
     return [
       {

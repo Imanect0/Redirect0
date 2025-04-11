@@ -1,19 +1,19 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 
-/// 短縮URL作成リクエスト
+/// URL shortening request
 #[derive(Debug, Deserialize)]
 pub struct CreateUrlRequest {
     pub url: String,
 }
 
-/// 短縮URL作成レスポンス
+/// URL shortening response
 #[derive(Debug, Serialize)]
 pub struct CreateUrlResponse {
     pub code: String,
 }
 
-/// DB内の短縮URLエントリ
+/// Shortened URL entry in DB
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ShortUrl {
     pub id: String,
@@ -21,7 +21,7 @@ pub struct ShortUrl {
     pub created_at: DateTime<Utc>,
 }
 
-/// アクセスログエントリ
+/// Access log entry
 #[derive(Debug, Serialize, Deserialize)]
 pub struct AccessLog {
     pub id: i32,
@@ -32,31 +32,31 @@ pub struct AccessLog {
     pub accessed_at: DateTime<Utc>,
 }
 
-/// 履歴API用レスポンス
+/// History API response
 #[derive(Debug, Serialize)]
 pub struct UrlHistoryItem {
     pub code: String,
     pub original_url: String,
-    pub created_at: DateTime<Utc>, // 生成日時を追加
+    pub created_at: DateTime<Utc>, // Added creation date
     pub click_count: i64,
     pub last_accessed_at: Option<DateTime<Utc>>,
 }
 
-/// 日付ごとのアクセス統計
+/// Daily access statistics
 #[derive(Debug, Serialize)]
 pub struct DailyStats {
     pub date: String,
     pub count: i64,
 }
 
-/// アナリティクスAPI用リクエストクエリ
+/// Analytics API request query
 #[derive(Debug, Deserialize)]
 pub struct AnalyticsQuery {
-    pub codes: String, // カンマ区切りのコード
-    pub range: Option<String>, // 例: "7d" (7日間)
+    pub codes: String,         // Comma-separated codes
+    pub range: Option<String>, // Example: "7d" (7 days)
 }
 
-/// アナリティクスAPI用レスポンス
+/// Analytics API response
 #[derive(Debug, Serialize)]
 pub struct AnalyticsResponse {
     #[serde(flatten)]

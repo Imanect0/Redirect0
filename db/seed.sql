@@ -1,6 +1,6 @@
--- ダミーデータ挿入用スクリプト
+-- Script for inserting dummy data
 
--- ダミーの短縮URL挿入
+-- Insert dummy shortened URLs
 INSERT INTO short_urls (id, original_url, created_at) VALUES
   ('abc123', 'https://imanect.com', NOW() - INTERVAL '30 days'),
   ('def456', 'https://imanect.com/products', NOW() - INTERVAL '25 days'),
@@ -9,8 +9,8 @@ INSERT INTO short_urls (id, original_url, created_at) VALUES
   ('mno345', 'https://imanect.com/about', NOW() - INTERVAL '10 days')
 ON CONFLICT (id) DO NOTHING;
 
--- 個別にアクセスログを挿入
--- abc123のログ
+-- Insert access logs individually
+-- Logs for abc123
 INSERT INTO access_logs (short_code, ip, user_agent, referer, accessed_at)
 SELECT
   'abc123',
@@ -35,7 +35,7 @@ SELECT
   NOW() - (floor(random() * 30)::int || ' days')::interval - (floor(random() * 24)::int || ' hours')::interval
 FROM generate_series(1, 150);
 
--- def456のログ
+-- Logs for def456
 INSERT INTO access_logs (short_code, ip, user_agent, referer, accessed_at)
 SELECT
   'def456',
@@ -60,7 +60,7 @@ SELECT
   NOW() - (floor(random() * 30)::int || ' days')::interval - (floor(random() * 24)::int || ' hours')::interval
 FROM generate_series(1, 120);
 
--- 残りの短縮URLにもアクセスログを追加
+-- Add access logs for the remaining shortened URLs
 INSERT INTO access_logs (short_code, ip, user_agent, referer, accessed_at)
 SELECT
   CASE floor(random() * 3)::int

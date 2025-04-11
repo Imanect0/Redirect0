@@ -1,7 +1,7 @@
--- 初期マイグレーション
+-- Initial migration
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- テーブル定義
+-- Table definitions
 CREATE TABLE IF NOT EXISTS short_urls (
   id TEXT PRIMARY KEY,
   original_url TEXT NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS access_logs (
   accessed_at TIMESTAMP DEFAULT now()
 );
 
--- ランダム短縮IDを生成する関数
+-- Function to generate random short IDs
 CREATE OR REPLACE FUNCTION generate_short_id()
 RETURNS TEXT AS $$
 DECLARE
@@ -25,12 +25,12 @@ DECLARE
   valid_chars TEXT := 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
   id_length INTEGER := 6;
 BEGIN
-  -- URL-safe な Base64 に似た形式のランダム文字列を生成
+  -- Generate a random string in a URL-safe Base64-like format
   SELECT string_agg(substr(valid_chars, ceil(random() * length(valid_chars))::integer, 1), '')
   INTO result
   FROM generate_series(1, id_length);
 
-  -- 既に存在するIDの場合は再生成
+  -- Regenerate if the ID already exists
   WHILE EXISTS (SELECT 1 FROM short_urls WHERE id = result) LOOP
     SELECT string_agg(substr(valid_chars, ceil(random() * length(valid_chars))::integer, 1), '')
     INTO result
@@ -41,7 +41,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- 短縮ID生成トリガー
+-- Trigger to generate short IDs
 CREATE OR REPLACE FUNCTION set_short_id()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -52,7 +52,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- トリガー設定
+-- Trigger setup
 DROP TRIGGER IF EXISTS short_urls_set_id ON short_urls;
 CREATE TRIGGER short_urls_set_id
 BEFORE INSERT ON short_urls

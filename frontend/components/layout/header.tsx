@@ -15,21 +15,21 @@ export function Header() {
               href="/"
               className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
             >
-              ホーム
+              Home
             </Link>
             <Link
               href="/history"
               className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
             >
               <History className="mr-1 h-4 w-4" />
-              履歴
+              History
             </Link>
             <Link
               href="/analytics"
               className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
             >
               <BarChart2 className="mr-1 h-4 w-4" />
-              分析
+              Analytics
             </Link>
           </nav>
         </div>

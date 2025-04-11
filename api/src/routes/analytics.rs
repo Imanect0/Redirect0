@@ -11,7 +11,7 @@ use crate::{
     utils::{parse_range_days, ApiError},
 };
 
-/// 短縮URL履歴を取得するエンドポイント
+/// Endpoint to retrieve the history of shortened URLs
 pub async fn get_history(
     State(state): State<Arc<AppState>>,
 ) -> Result<Json<Vec<UrlHistoryItem>>, ApiError> {
@@ -22,12 +22,12 @@ pub async fn get_history(
     Ok(Json(history))
 }
 
-/// 短縮URLのアクセス統計を取得するエンドポイント
+/// Endpoint to retrieve access statistics for shortened URLs
 pub async fn get_analytics(
     State(state): State<Arc<AppState>>,
     Query(query): Query<AnalyticsQuery>,
 ) -> Result<Json<AnalyticsResponse>, ApiError> {
-    // コードをカンマで分割
+    // Split codes by commas
     let codes: Vec<String> = query
         .codes
         .split(',')
@@ -36,14 +36,14 @@ pub async fn get_analytics(
 
     if codes.is_empty() {
         return Err(ApiError::BadRequest(
-            "少なくとも1つのコードを指定してください".to_string(),
+            "Please specify at least one code.".to_string(),
         ));
     }
 
-    // 範囲を日数に変換
+    // Convert range to days
     let days = parse_range_days(query.range);
 
-    // アナリティクスデータを取得
+    // Retrieve analytics data
     let stats = db::get_analytics(&state.db, &codes, days)
         .await
         .map_err(|e| ApiError::Database(e.to_string()))?;

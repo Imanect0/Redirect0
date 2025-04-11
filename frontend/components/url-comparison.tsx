@@ -35,8 +35,8 @@ export function UrlComparison({
       setAvailableUrls(data);
     } catch (error) {
       toast({
-        title: "エラー",
-        description: "URL履歴の取得に失敗しました",
+        title: "Error",
+        description: "Failed to retrieve URL list",
         variant: "destructive",
       });
     } finally {
@@ -62,7 +62,7 @@ export function UrlComparison({
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h2 className="text-xl font-bold">ID比較</h2>
+        <h2 className="text-xl font-bold">ID Comparison</h2>
         <div className="flex items-center gap-2">
           <Select
             disabled={loading || unselectedUrls.length === 0}
@@ -113,7 +113,7 @@ export function UrlComparison({
         })}
         {selectedCodes.length === 0 && (
           <div className="text-muted-foreground text-sm">
-            比較するIDを選択してください
+            Please select an ID to compare
           </div>
         )}
       </div>

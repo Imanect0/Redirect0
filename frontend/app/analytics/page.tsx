@@ -10,9 +10,9 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">アクセス分析</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Access Analysis</h1>
         <p className="text-muted-foreground">
-          短縮URLのアクセス状況を分析します。複数のURLを選択して比較することもできます。
+          Analyze the access status of shortened URLs. You can also select and compare multiple URLs.
         </p>
       </div>
       <div className="mt-6">

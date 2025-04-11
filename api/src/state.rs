@@ -2,7 +2,7 @@ use axum::extract::FromRef;
 use sqlx::{Pool, Postgres};
 use std::sync::Arc;
 
-/// アプリケーション状態を表す構造体
+/// Structure representing the application state
 #[derive(Clone)]
 pub struct AppState {
     pub db: Pool<Postgres>,
@@ -10,18 +10,18 @@ pub struct AppState {
 }
 
 impl AppState {
-    /// 新しいアプリケーション状態を作成
+    /// Create a new application state
     pub fn new(db: Pool<Postgres>, cors_origin: String) -> Self {
         Self { db, cors_origin }
     }
 
-    /// バックグラウンドタスク用の共有状態を作成
+    /// Create a shared state for background tasks
     pub fn into_background_state(self) -> BackgroundState {
         BackgroundState { db: self.db }
     }
 }
 
-/// バックグラウンドタスク用の状態
+/// State for background tasks
 #[derive(Clone)]
 pub struct BackgroundState {
     pub db: Pool<Postgres>,

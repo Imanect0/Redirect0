@@ -1,27 +1,27 @@
 FROM node:18-alpine AS base
 
-# 依存関係のインストール
+# Install dependencies
 FROM base AS deps
 WORKDIR /app
 
 COPY package.json ./
-# package-lock.jsonがない場合でも失敗しないように通常のnpm installを使用
+# Use regular npm install to avoid failure if package-lock.json is missing
 RUN npm install
 
-# ビルド
+# Build
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# 環境変数を設定 - この値をlocalhostに変更
+# Set environment variable - change this value to localhost
 ENV NEXT_PUBLIC_API_URL=http://localhost:8081
 
-# publicディレクトリが存在しない場合は作成
+# Create the public directory if it does not exist
 RUN mkdir -p public
 RUN npm run build
 
-# 本番用イメージ
+# Production image
 FROM base AS runner
 WORKDIR /app
 
@@ -30,11 +30,11 @@ ENV NODE_ENV production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# publicディレクトリが存在しない場合に備えて事前に作成
+# Pre-create the public directory in case it does not exist
 RUN mkdir -p public
 COPY --from=builder /app/public ./public
 
-# 静的ファイルとビルド成果物をコピー
+# Copy static files and build artifacts
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 

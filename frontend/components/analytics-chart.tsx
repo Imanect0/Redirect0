@@ -44,8 +44,8 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
       setAnalytics(data);
     } catch (error) {
       toast({
-        title: "エラー",
-        description: "アナリティクスデータの取得に失敗しました",
+        title: "Error",
+        description: "Failed to fetch analytics data",
         variant: "destructive",
       });
     } finally {
@@ -53,7 +53,6 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
     }
   };
 
-  // 日付をマージして、統合されたチャートデータを作成
   const prepareChartData = (): ChartDataItem[] => {
     if (!analytics) return [];
 
@@ -63,10 +62,8 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
       stats.forEach((item) => allDates.add(item.date));
     });
 
-    // 日付でソート
     const sortedDates = Array.from(allDates).sort();
 
-    // 各日付のデータポイントを作成
     return sortedDates.map((date) => {
       const dataPoint: ChartDataItem = { date };
 
@@ -84,7 +81,7 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-pulse text-primary">読み込み中...</div>
+        <div className="animate-pulse text-primary">Loading...</div>
       </div>
     );
   }
@@ -93,7 +90,7 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
     return (
       <div className="text-center p-12 border border-dashed rounded-lg">
         <p className="text-muted-foreground">
-          アナリティクスデータがありません。
+          No analytics data available for the selected range.
         </p>
       </div>
     );
@@ -102,12 +99,12 @@ export function AnalyticsChart({ codes }: AnalyticsChartProps) {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">ID別アクセス統計</h2>
+        <h2 className="text-xl font-bold">Analytics Chart</h2>
         <Tabs defaultValue={range} onValueChange={setRange}>
           <TabsList>
-            <TabsTrigger value="7d">7日間</TabsTrigger>
-            <TabsTrigger value="30d">30日間</TabsTrigger>
-            <TabsTrigger value="90d">90日間</TabsTrigger>
+            <TabsTrigger value="7d">7 Days</TabsTrigger>
+            <TabsTrigger value="30d">30 Days</TabsTrigger>
+            <TabsTrigger value="90d">90 Days</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>

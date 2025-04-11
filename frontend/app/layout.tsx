@@ -8,8 +8,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Redirect0 - URLの短縮・分析サービス",
-  description: "簡単にURLを短縮し、アクセス数を分析できるサービス",
+  title: "Redirect0 - URL Shortening & Analytics Service",
+  description: "A service to easily shorten URLs and analyze access counts",
   icons: {
     icon: "/favicon.svg",
   },
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja">
+    <html lang="en">
       <body className={inter.className}>
         <div className="relative min-h-screen flex flex-col">
           <Header />

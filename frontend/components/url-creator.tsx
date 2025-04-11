@@ -20,8 +20,8 @@ export function UrlCreator() {
 
     if (!url) {
       toast({
-        title: "エラー",
-        description: "URLを入力してください",
+        title: "Error",
+        description: "Please enter a URL",
         variant: "destructive",
       });
       return;
@@ -32,14 +32,14 @@ export function UrlCreator() {
       const response = await api.createShortUrl(url);
       setShortCode(response.code);
       toast({
-        title: "成功",
-        description: "URLが短縮されました",
+        title: "Success",
+        description: "URL has been shortened",
       });
     } catch (error) {
       toast({
-        title: "エラー",
+        title: "Error",
         description:
-          error instanceof Error ? error.message : "URLの短縮に失敗しました",
+          error instanceof Error ? error.message : "Failed to shorten URL",
         variant: "destructive",
       });
     } finally {
@@ -51,8 +51,8 @@ export function UrlCreator() {
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
     toast({
-      title: "コピーしました",
-      description: "短縮URLがクリップボードにコピーされました",
+      title: "Copied",
+      description: "Shortened URL copied to clipboard",
     });
   };
 
@@ -62,7 +62,7 @@ export function UrlCreator() {
     <div className="w-full max-w-3xl mx-auto p-6 bg-card rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6 flex items-center">
         <LinkIcon className="mr-2 h-6 w-6" />
-        URLを短縮する
+        Shorten URL
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -76,14 +76,14 @@ export function UrlCreator() {
             disabled={isLoading}
           />
           <Button type="submit" disabled={isLoading || !url}>
-            {isLoading ? "短縮中..." : "短縮する"}
+            {isLoading ? "Shortening..." : "Shorten"}
           </Button>
         </div>
       </form>
 
       {shortUrl && (
         <div className="mt-6 p-4 bg-muted rounded-md">
-          <p className="text-sm font-medium mb-2">短縮URL:</p>
+          <p className="text-sm font-medium mb-2">Shortened URL:</p>
           <div className="flex items-center justify-between rounded-md bg-background p-2">
             <a
               href={shortUrl}

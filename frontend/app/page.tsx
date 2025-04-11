@@ -5,10 +5,11 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center space-y-12">
       <section className="w-full max-w-4xl space-y-6 text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          URLを短縮して、分析しよう
+          Shorten URLs and Analyze Performance
         </h1>
         <p className="max-w-[700px] text-lg text-muted-foreground mx-auto">
-          長いURLを短く、シンプルに。アクセス数も追跡して効果を測定できます。
+          Make long URLs short and simple. Track access counts to measure
+          effectiveness.
         </p>
       </section>
 
@@ -34,9 +35,9 @@ export default function Home() {
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
               </svg>
             </div>
-            <h3 className="text-xl font-bold">簡単URL短縮</h3>
+            <h3 className="text-xl font-bold">Easy URL Shortening</h3>
             <p className="text-center text-muted-foreground">
-              長いURLを数秒で短縮。コピーして簡単に共有できます。
+              Shorten long URLs in seconds. Copy and share easily.
             </p>
           </div>
           <div className="flex flex-col items-center space-y-2 rounded-lg border p-6 bg-card">
@@ -57,9 +58,9 @@ export default function Home() {
                 <path d="m9 12 2 2 4-4"></path>
               </svg>
             </div>
-            <h3 className="text-xl font-bold">アクセス分析</h3>
+            <h3 className="text-xl font-bold">Access Analytics</h3>
             <p className="text-center text-muted-foreground">
-              共有したURLのアクセス数を日別に確認できます。
+              Check daily access counts for your shared URLs.
             </p>
           </div>
           <div className="flex flex-col items-center space-y-2 rounded-lg border p-6 bg-card">
@@ -84,9 +85,10 @@ export default function Home() {
                 <path d="M15 16h.01"></path>
               </svg>
             </div>
-            <h3 className="text-xl font-bold">統計比較</h3>
+            <h3 className="text-xl font-bold">Statistical Comparison</h3>
             <p className="text-center text-muted-foreground">
-              複数のURLのアクセス統計を比較して効果を測定できます。
+              Compare access statistics for multiple URLs to measure
+              effectiveness.
             </p>
           </div>
         </div>
