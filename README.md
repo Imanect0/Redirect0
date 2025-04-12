@@ -1,11 +1,12 @@
 # Redirect0 - URL Shortener & Analytics Platform
 
-Redirect0 is a self-hosted URL shortener service with detailed analytics capabilities, designed for A/B testing and tracking URL performance.
+Redirect0 is a self-hosted URL shortener service with advanced analytics capabilities, designed for A/B testing, content optimization, and comprehensive tracking of URL performance.
 
 **[日本語版 README](./README.ja.md)**
 
 ## ✨ Features
 
+### Core Features
 - Create short, memorable URLs
 - Track click metrics with detailed analytics
 - Compare performance between multiple shortened URLs
@@ -13,16 +14,40 @@ Redirect0 is a self-hosted URL shortener service with detailed analytics capabil
 - Self-hosted and privacy-friendly
 - Docker-based deployment for easy setup
 
+### Advanced Features (Upcoming)
+- **Project Management & Collaboration**
+  - Create and manage multiple projects with team members
+  - Team invitation system with customizable permissions
+  - Shared analytics dashboards within teams
+
+- **AI-Powered Analytics**
+  - **Target Audience Analysis**: Get insights on the ideal audience for your content
+  - **Content Summarization**: Automatic summarization of linked content for quick reference
+  - **Natural Language Queries**: Ask questions like "What was my best performing link last week?" in plain English
+  - **Smart A/B Testing**: AI-suggested testing approaches and automatic result analysis
+  - **Conversion Prediction**: ML-based forecasting of conversion probability
+  - **Automated Tagging & Categorization**: Content-aware URL categorization
+
+- **Enhanced Tracking**
+  - Advanced JavaScript-based visitor tracking
+  - Time-based analytics (hourly, daily, weekly views)
+  - User behavior and engagement metrics
+  - Geographic and device-specific insights
+
+- **Intelligent Reporting**
+  - Personalized reports for different stakeholders
+  - Scheduled report generation and delivery
+  - Data-driven recommendations for optimization
+
 ## 🚀 Tech Stack
 
 ### Backend
-
 - Rust with Axum web framework
 - PostgreSQL database
 - Asynchronous processing with Tokio
+- MCP server for AI model integration
 
 ### Frontend
-
 - Next.js with TypeScript
 - Tailwind CSS for styling
 - shadcn/ui for UI components
@@ -45,12 +70,12 @@ cd redirect0
 2. Start the application:
 
 ```bash
-make up
+docker compose up -d
 ```
 
 3. Access the application:
-   - Frontend: http://localhost:80
-   - API: http://localhost:80/api
+   - Frontend: http://localhost
+   - API: http://localhost/api
 
 ## 📊 Usage
 
@@ -75,6 +100,7 @@ Edit the `.env` file or environment variables in the `docker-compose.yml` file t
 - Port configurations
 - CORS settings
 - Logging levels
+- AI model connections (for MCP)
 
 ## 📚 API Documentation
 
@@ -84,25 +110,10 @@ The Redirect0 API provides endpoints for:
 - Retrieving URL history: `GET /api/history`
 - Fetching analytics data: `GET /api/analytics?codes=code1,code2&range=7d`
 - Redirection handling: `GET /:code`
+- Team management: `POST /api/teams`
+- AI insights: `POST /api/insights`
+- MCP connections: `POST /api/mcp/connect`
 
-## 🐳 Docker Commands
-
-```bash
-# Start all services
-make up
-
-# Stop all services
-make down
-
-# View logs
-make logs
-
-# Rebuild services
-make rebuild
-
-# Clean up volumes and containers
-make clean
-```
 
 ## 🌱 Development
 
@@ -115,7 +126,11 @@ To set up a development environment:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU Affero General Public License v3 (AGPL-3.0) - see the [LICENSE](LICENSE) file for details.
+
+### Commercial License
+
+For commercial use cases where the AGPL-3.0 requirements are not suitable, a commercial license is available. See [COMMERCIAL-LICENSE.md](COMMERCIAL-LICENSE.md) for more information.
 
 ## 👥 Contributing
 
@@ -126,3 +141,11 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## 🗺️ Roadmap
+
+We're actively working on implementing the advanced features mentioned above. Check our [GitHub Projects](https://github.com/yourusername/redirect0/projects) page for the current development status and upcoming releases.
+
+- Q2 2025: Project Management & Collaboration features
+- Q3 2025: MCP Integration & AI-Powered Analytics
+- Q4 2025: Enhanced Tracking & Intelligent Reporting
