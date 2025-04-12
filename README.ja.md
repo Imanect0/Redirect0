@@ -62,7 +62,6 @@ https://github.com/user-attachments/assets/8b615fef-48d8-4ca1-943d-30e0339dc8ad
 ## 📋 必要条件
 
 - DockerとDocker Compose
-- Make（オプション、提供されているMakefileを使用する場合）
 
 ## 🛠️ クイックスタート
 
