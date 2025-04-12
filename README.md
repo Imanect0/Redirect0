@@ -2,6 +2,10 @@
 
 Redirect0 is a self-hosted URL shortener service with advanced analytics capabilities, designed for A/B testing, content optimization, and comprehensive tracking of URL performance.
 
+
+https://github.com/user-attachments/assets/280c82c4-597b-4b36-b14b-90c2042045dd
+
+
 **[日本語版 README](./README.ja.md)**
 
 ## ✨ Features
