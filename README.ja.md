@@ -2,6 +2,12 @@
 
 Redirect0は、A/Bテスト、コンテンツ最適化、URLパフォーマンスの包括的な追跡のために設計された、高度な分析機能を備えたセルフホスト型URL短縮サービスです。
 
+
+
+https://github.com/user-attachments/assets/8b615fef-48d8-4ca1-943d-30e0339dc8ad
+
+
+
 **[English README](./README.md)**
 
 ## ✨ 機能
