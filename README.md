@@ -66,7 +66,7 @@ https://github.com/user-attachments/assets/280c82c4-597b-4b36-b14b-90c2042045dd
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/redirect0.git
+git clone https://github.com/Imanect0/redirect0.git
 cd redirect0
 ```
 
