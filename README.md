@@ -60,7 +60,6 @@ https://github.com/user-attachments/assets/280c82c4-597b-4b36-b14b-90c2042045dd
 ## 📋 Prerequisites
 
 - Docker and Docker Compose
-- Make (optional, for using the provided Makefile)
 
 ## 🛠️ Quick Start
 
